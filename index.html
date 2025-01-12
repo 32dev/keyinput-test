@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <style>
+        html,
+        body {
+            background-color: rgba(0, 0, 0, 0.35);
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #key-display {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #key-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .key {
+            border: 1px solid darkgray;
+            background-color: rgba(0, 0, 0, 0.35);
+            color: white;
+            text-align: center;
+            font-size: small;
+            width: 50px;
+            height: 35px;
+        }
+
+        .active {
+            background-color: limegreen;
+        }
+
+        #key-count {
+            text-align: center;
+        }
+
+        #header {
+            -webkit-app-region: drag;
+            /* Make the header area draggable */
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0);
+            cursor: move;
+            width: 100%;
+            height: 20px;
+        }
+
+        #key-count {
+            text-align: right;
+            margin-right: 5px;
+        }
+
+        .key-count {
+            text-align: right;
+            font-size: small;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+    </div>
+    <div id="key-container">
+        <div id="LEFT SHIFT-key" class="key">LShift<br>
+            <div id="LEFT SHIFT-key-count" class="key-count"></div>
+        </div>
+        <div id="S-key" class="key">S<br>
+            <div id="S-key-count" class="key-count"></div>
+        </div>
+        <div id="D-key" class="key">D<br>
+            <div id="D-key-count" class="key-count"></div>
+        </div>
+        <div id="F-key" class="key">F<br>
+            <div id="F-key-count" class="key-count"></div>
+        </div>
+        <div id="J-key" class="key">J<br>
+            <div id="J-key-count" class="key-count"></div>
+        </div>
+        <div id="K-key" class="key">K<br>
+            <div id="K-key-count" class="key-count"></div>
+        </div>
+        <div id="L-key" class="key">L<br>
+            <div id="L-key-count" class="key-count"></div>
+        </div>
+        <div id="RIGHT SHIFT-key" class="key">RShift<br>
+            <div id="RIGHT SHIFT-key-count" class="key-count"></div>
+        </div>
+    </div>
+    <div id="key-count">
+        0
+    </div>
+    <script>
+        // Initialize the key listener
+        let keyCount = 0;
+        let map = new Map();
+        map.set('S', 0);
+        map.set('D', 0);
+        map.set('F', 0);
+        map.set('J', 0);
+        map.set('K', 0);
+        map.set('L', 0);
+        map.set('LEFT SHIFT', 0);  // Add LShift
+        map.set('RIGHT SHIFT', 0);  // Add RShift
+
+        window.electron.onKeyDown((event) => {
+            document.getElementById(`${event.name}-key`).style = `background-color:yellow;color:rgba(0, 0, 0, 0.35);`;
+        });
+
+        window.electron.onKeyUp((event) => {
+            document.getElementById(`${event.name}-key`).style = `background-color:rgba(0, 0, 0, 0.35);color:white;`;
+            map.set(event.name, map.get(event.name) + 1);
+            let keyCountElement = document.getElementById('key-count');
+            document.getElementById(`${event.name}-key-count`).innerHTML = map.get(event.name);
+            keyCount++;
+            keyCountElement.innerHTML = keyCount;
+        });
+    </script>
+</body>
+
+</html>
