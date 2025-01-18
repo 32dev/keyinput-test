@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            background-color: rgba(0, 0, 0, 0.35);
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #key-display {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #key-container {}
+
+        .key-panel {
+            width: 500px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .key {
+            border: 1px solid darkgray;
+            background-color: rgba(0, 0, 0, 0.35);
+            color: white;
+            text-align: center;
+            font-size: small;
+            width: 50px;
+            height: 35px;
+        }
+
+        .active {
+            background-color: limegreen;
+        }
+
+        #key-count {
+            text-align: center;
+        }
+
+        #header {
+            -webkit-app-region: drag;
+            /* Make the header area draggable */
+            text-align: center;
+            background-color: rgba(255, 255, 255, 1);
+            cursor: move;
+            width: 100%;
+            color: black;
+            height: 30px;
+        }
+
+        #key-count {
+            text-align: right;
+            margin-right: 5px;
+        }
+
+        .key-count {
+            text-align: right;
+            font-size: small;
+        }
+
+        .container {
+            width: 100%;
+            height: 30px;
+        }
+
+        #controls {
+            float: left;
+            width: 20%;
+        }
+
+        #key-count {
+            float: right;
+            width: 50%;
+        }
+
+        input[type="text"] {
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            width: 95%;
+            height: 10px;
+            position: relative;
+            right: 5%;
+            border: none;
+        }
+
+        .key-in {
+            color: black;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        key input test
+    </div>
+    <div id="key-container">
+
+    </div>
+    <script>
+        let keyList = [
+            [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "0"
+            ],
+            [
+                "Q",
+                "W",
+                "E",
+                "R",
+                "T",
+                "Y",
+                "U",
+                "I",
+                "O",
+                "P"
+            ],
+            [
+                "A",
+                "S",
+                "D",
+                "F",
+                "G",
+                "H",
+                "J",
+                "K",
+                "L"
+            ],
+            [
+                "LEFT SHIFT",
+                "Z",
+                "X",
+                "C",
+                "V",
+                "B",
+                "N",
+                "M",
+                "RIGHT SHIFT"
+            ]
+        ];
+
+        let kc = document.getElementById('key-container');
+
+        for (let i = 0; i < keyList.length; i++) {
+            let panel = document.createElement('div');
+            panel.className = 'key-panel';
+            for (let j = 0; j < keyList[i].length; j++) {
+                let k = document.createElement('div');
+                k.id = `${keyList[i][j]}-key`;
+                k.className = 'key';
+                k.innerHTML = `${keyList[i][j]}`;
+                panel.append(k);
+            }
+            kc.appendChild(panel);
+        }
+        for (let i = 0; i < keyList.length; i++) {
+
+        }
+
+    </script>
+    <script>
+
+        window.electron.onKeyDown((event) => {
+            document.getElementById(`${event.name}-key`).classList.add('key-in');
+        });
+
+        window.electron.onKeyUp((event) => {
+            document.getElementById(`${event.name}-key`).classList.remove('key-in');
+        });
+    </script>
+</body>
+
+</html>
