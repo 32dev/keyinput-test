@@ -69,29 +69,35 @@
     <div id="header">
     </div>
     <div id="key-container">
-        <div id="LEFT SHIFT-key" class="key">LShift<br>
-            <div id="LEFT SHIFT-key-count" class="key-count"></div>
+        <div id="CAPS LOCK-key" class="key">CL<br>
+            <div id="CAPS LOCK-key-count" class="key-count"></div>
         </div>
-        <div id="S-key" class="key">S<br>
-            <div id="S-key-count" class="key-count"></div>
+        <div id="Q-key" class="key">Q<br>
+            <div id="Q-key-count" class="key-count"></div>
         </div>
-        <div id="D-key" class="key">D<br>
-            <div id="D-key-count" class="key-count"></div>
+        <div id="W-key" class="key">W<br>
+            <div id="W-key-count" class="key-count"></div>
         </div>
-        <div id="F-key" class="key">F<br>
-            <div id="F-key-count" class="key-count"></div>
+        <div id="E-key" class="key">E<br>
+            <div id="E-key-count" class="key-count"></div>
         </div>
-        <div id="J-key" class="key">J<br>
-            <div id="J-key-count" class="key-count"></div>
+        <div id="SPACE-key" class="key">SP<br>
+            <div id="SPACE-key-count" class="key-count"></div>
         </div>
-        <div id="K-key" class="key">K<br>
-            <div id="K-key-count" class="key-count"></div>
+        <div id="RIGHT ARROW-key" class="key">RA<br>
+            <div id="RIGHT ARROW-key-count" class="key-count"></div>
         </div>
-        <div id="L-key" class="key">L<br>
-            <div id="L-key-count" class="key-count"></div>
+        <div id="NUMPAD 7-key" class="key">7<br>
+            <div id="NUMPAD 7-key-count" class="key-count"></div>
         </div>
-        <div id="RIGHT SHIFT-key" class="key">RShift<br>
-            <div id="RIGHT SHIFT-key-count" class="key-count"></div>
+        <div id="NUMPAD 8-key" class="key">8<br>
+            <div id="NUMPAD 8-key-count" class="key-count"></div>
+        </div>
+        <div id="NUMPAD 9-key" class="key">9<br>
+            <div id="NUMPAD 9-key-count" class="key-count"></div>
+        </div>
+        <div id="NUMPAD PLUS-key" class="key">+<br>
+            <div id="NUMPAD PLUS-key-count" class="key-count"></div>
         </div>
     </div>
     <div id="key-count">
@@ -101,14 +107,16 @@
         // Initialize the key listener
         let keyCount = 0;
         let map = new Map();
-        map.set('S', 0);
-        map.set('D', 0);
-        map.set('F', 0);
-        map.set('J', 0);
-        map.set('K', 0);
-        map.set('L', 0);
-        map.set('LEFT SHIFT', 0);  // Add LShift
-        map.set('RIGHT SHIFT', 0);  // Add RShift
+        map.set('Q', 0);
+        map.set('W', 0);
+        map.set('E', 0);
+        map.set('NUMPAD 7', 0);
+        map.set('NUMPAD 8', 0);
+        map.set('NUMPAD 9', 0);
+        map.set('CAPS LOCK', 0);
+        map.set('NUMPAD PLUS', 0);
+        map.set('SPACE', 0);
+        map.set('RIGHT ARROW', 0);
 
         window.electron.onKeyDown((event) => {
             document.getElementById(`${event.name}-key`).style = `background-color:yellow;color:rgba(0, 0, 0, 0.35);`;
