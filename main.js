@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const { GlobalKeyboardListener } = require('node-global-key-listener');
 
@@ -6,16 +6,34 @@ let mainWindow;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
-        width: 400,
-        height: 80,
+        width: 500,
+        height: 120,
         frame: false, // Disable the default window frame
         transparent: true,  // Make the window background transparent
         webPreferences: {
             preload: path.join(__dirname, 'renderer.js'),
             contextIsolation: true,
+            nodeIntegration: true
         },
+        alwaysOnTop: true
     });
-
+    const contextMenu = Menu.buildFromTemplate([
+        // { label: '옵션 1', click: () => console.log('옵션 1 클릭') },
+        // { label: '옵션 2', click: () => console.log('옵션 2 클릭') },
+        // { type: 'separator' },
+        { label: '닫기', click: () => console.log('MENU CLOSE') }
+    ]);
+    // 우클릭 시 메뉴 열기
+    mainWindow.webContents.on('context-menu', (e, params) => {
+        contextMenu.popup({
+            window: mainWindow,
+            x: params.x,
+            y: params.y,
+            callback: () => {
+                mainWindow.close();
+            }
+        });
+    });
     mainWindow.loadFile('index.html');
 
     const keyboardListener = new GlobalKeyboardListener();

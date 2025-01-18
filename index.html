@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         html,
         body {
             background-color: rgba(0, 0, 0, 0.35);
@@ -23,6 +29,7 @@
         #key-container {
             display: flex;
             justify-content: center;
+            height: 50px;
         }
 
         .key {
@@ -47,10 +54,11 @@
             -webkit-app-region: drag;
             /* Make the header area draggable */
             text-align: center;
-            background-color: rgba(0, 0, 0, 0);
+            background-color: rgba(255, 255, 255, 1);
             cursor: move;
             width: 100%;
-            height: 20px;
+            color: black;
+            height: 30px;
         }
 
         #key-count {
@@ -62,47 +70,86 @@
             text-align: right;
             font-size: small;
         }
+
+        .container {
+            width: 100%;
+            height: 30px;
+        }
+
+        #controls {
+            float: left;
+            width: 20%;
+        }
+
+        #key-count {
+            float: right;
+            width: 50%;
+        }
+
+        input[type="text"] {
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            width: 95%;
+            height: 10px;
+            position: relative;
+            right: 5%;
+            border: none;
+        }
+
+        .key-in {
+            color: black;
+            background-color:yellow;
+        }
+
     </style>
 </head>
 
 <body>
-    <div id="header">
-    </div>
-    <div id="key-container">
-        <div id="CAPS LOCK-key" class="key">CL<br>
-            <div id="CAPS LOCK-key-count" class="key-count"></div>
+    <form>
+        <div id="header">
+            key input test
         </div>
-        <div id="Q-key" class="key">Q<br>
-            <div id="Q-key-count" class="key-count"></div>
+        <div id="key-container">
+            <div id="CAPS LOCK-key" class="key">CL<br>
+                <input type="text" id="CAPS LOCK-key-count" class="key-count" value="0" disabled />
+            </div>
+            <div id="Q-key" class="key">Q<br>
+                <input type="text" id="Q-key-count" class="key-count" value="0" disabled />
+            </div>
+            <div id="W-key" class="key">W<br>
+                <input type="text" id="W-key-count" class="key-count" value="0" disabled />
+            </div>
+            <div id="E-key" class="key">E<br>
+                <input type="text" id="E-key-count" class="key-count" value="0" disabled />
+            </div>
+            <div id="SPACE-key" class="key">SP<br>
+                <input type="text" id="SPACE-key-count" class="key-count" value="0" disabled />
+            </div>
+            <div id="RIGHT ARROW-key" class="key">RA<br>
+                <input type="text" id="RIGHT ARROW-key-count" class="key-count" value="0" disabled />
+            </div>
+            <div id="NUMPAD 7-key" class="key">7<br>
+                <input type="text" id="NUMPAD 7-key-count" class="key-count" value="0" disabled />
+            </div>
+            <div id="NUMPAD 8-key" class="key">8<br>
+                <input type="text" id="NUMPAD 8-key-count" class="key-count" value="0" disabled />
+            </div>
+            <div id="NUMPAD 9-key" class="key">9<br>
+                <input type="text" id="NUMPAD 9-key-count" class="key-count" value="0" disabled />
+            </div>
+            <div id="NUMPAD PLUS-key" class="key">+<br>
+                <input type="text" id="NUMPAD PLUS-key-count" class="key-count" value="0" disabled />
+            </div>
         </div>
-        <div id="W-key" class="key">W<br>
-            <div id="W-key-count" class="key-count"></div>
+        <div class="container">
+            <div id="controls">
+                <input type="reset" value="reset">
+            </div>
+            <input id="key-count" type="text" value="0" disabled>
+
+            </input>
         </div>
-        <div id="E-key" class="key">E<br>
-            <div id="E-key-count" class="key-count"></div>
-        </div>
-        <div id="SPACE-key" class="key">SP<br>
-            <div id="SPACE-key-count" class="key-count"></div>
-        </div>
-        <div id="RIGHT ARROW-key" class="key">RA<br>
-            <div id="RIGHT ARROW-key-count" class="key-count"></div>
-        </div>
-        <div id="NUMPAD 7-key" class="key">7<br>
-            <div id="NUMPAD 7-key-count" class="key-count"></div>
-        </div>
-        <div id="NUMPAD 8-key" class="key">8<br>
-            <div id="NUMPAD 8-key-count" class="key-count"></div>
-        </div>
-        <div id="NUMPAD 9-key" class="key">9<br>
-            <div id="NUMPAD 9-key-count" class="key-count"></div>
-        </div>
-        <div id="NUMPAD PLUS-key" class="key">+<br>
-            <div id="NUMPAD PLUS-key-count" class="key-count"></div>
-        </div>
-    </div>
-    <div id="key-count">
-        0
-    </div>
+    </form>
     <script>
         // Initialize the key listener
         let keyCount = 0;
@@ -119,14 +166,14 @@
         map.set('RIGHT ARROW', 0);
 
         window.electron.onKeyDown((event) => {
-            document.getElementById(`${event.name}-key`).style = `background-color:yellow;color:rgba(0, 0, 0, 0.35);`;
+            document.getElementById(`${event.name}-key`).classList.add('key-in');
         });
 
         window.electron.onKeyUp((event) => {
-            document.getElementById(`${event.name}-key`).style = `background-color:rgba(0, 0, 0, 0.35);color:white;`;
+            document.getElementById(`${event.name}-key`).classList.remove('key-in');
             map.set(event.name, map.get(event.name) + 1);
             let keyCountElement = document.getElementById('key-count');
-            document.getElementById(`${event.name}-key-count`).innerHTML = map.get(event.name);
+            document.getElementById(`${event.name}-key-count`).value = map.get(event.name);
             keyCount++;
             keyCountElement.innerHTML = keyCount;
         });
