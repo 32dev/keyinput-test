@@ -53,16 +53,16 @@
             text-align: center;
         }
 
-        #header {
+        #sheet {
             -webkit-app-region: drag;
-            /* Make the header area draggable */
+            /* Make the sheet area draggable */
             text-align: left;
             background-color: rgba(255, 255, 255, 1);
             cursor: move;
             width: 90%;
             background-color: black;
             color: white;
-            height: 50px;
+            height: 600px;
         }
 
         #key-count {
@@ -108,8 +108,14 @@
 </head>
 
 <body>
-    <div id="header">
-        
+    <div id="sheet">
+
+    </div>
+    <div id="command">
+        <input type="button" value="start" onclick="start()" id="start-button">
+        <input type="button" value="pause" onclick="pause()" id="pause-button">
+        <input type="button" value="reset" onclick="reset()">
+        <input type="button" value="copy" onclick="copy()">
     </div>
     <div id="key-container">
 
@@ -181,7 +187,7 @@
 
     </script>
     <script>
-
+        let sw = false;
         window.electron.onKeyDown((event) => {
             document.getElementById(`${event.name}-key`).classList.add('key-in');
         });
@@ -194,8 +200,41 @@
                 event.name = `△`;;
             }
 
-            document.getElementById('header').innerHTML += `${(event.name + "").toLowerCase()}`;;
+            document.getElementById('sheet').innerHTML += `${(event.name + "").toLowerCase()}`;;
         });
+        let th1 = null;
+        let th2 = null;
+        function start() {
+            if (!sw) {
+                sw = true;
+                th1 = setInterval(function () {
+                    document.getElementById('sheet').innerHTML += `_`;;
+                }, 250)
+                th2 = setInterval(function () {
+                    document.getElementById('sheet').innerHTML += `<br/>`;;
+                }, 8000)
+            }
+
+        }
+        function pause() {
+            if (sw) {
+                sw = false;
+                clearInterval(th1);
+                clearInterval(th2);
+            }
+        }
+        function copy() {
+            navigator.clipboard.writeText(document.getElementById('sheet').innerText);
+        }
+        function reset() {
+            sw = false;
+            clearInterval(th1);
+            clearInterval(th2);
+            th1 = null;
+            th2 = null;
+            document.getElementById('sheet').innerHTML = "";
+
+        }
     </script>
 </body>
 

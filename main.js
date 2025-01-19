@@ -6,8 +6,8 @@ let mainWindow;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
-        width: 500,
-        height: 250,
+        width: 600,
+        height: 900,
         frame: false, // Disable the default window frame
         transparent: true,  // Make the window background transparent
         webPreferences: {
@@ -34,7 +34,7 @@ app.on('ready', () => {
             }
         });
     });
-    mainWindow.loadFile('index2.html');
+    mainWindow.loadFile('index3.html');
 
     const keyboardListener = new GlobalKeyboardListener();
     // Global key listener setup

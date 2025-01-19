@@ -12,3 +12,4 @@ contextBridge.exposeInMainWorld('electron', {
         callback(data);
     })
 });
+S
