@@ -38,8 +38,8 @@
             color: white;
             text-align: center;
             font-size: small;
-            width: 50px;
-            height: 35px;
+            width: 100%;
+            height: 100%;
         }
 
         .active {
@@ -98,48 +98,96 @@
 
         .key-in {
             color: black;
-            background-color:yellow;
+            background-color: yellow;
         }
 
+        table,
+        tr,
+        td {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            width: 40px;
+            text-align: center;
+            height: 40px;
+            vertical-align: top;
+        }
     </style>
 </head>
 
 <body>
     <form>
+
+
         <div id="header">
             key input test
         </div>
         <div id="key-container">
-            <div id="CAPS LOCK-key" class="key">CL<br>
-                <input type="text" id="CAPS LOCK-key-count" class="key-count" value="0" disabled />
-            </div>
-            <div id="Q-key" class="key">Q<br>
-                <input type="text" id="Q-key-count" class="key-count" value="0" disabled />
-            </div>
-            <div id="W-key" class="key">W<br>
-                <input type="text" id="W-key-count" class="key-count" value="0" disabled />
-            </div>
-            <div id="E-key" class="key">E<br>
-                <input type="text" id="E-key-count" class="key-count" value="0" disabled />
-            </div>
-            <div id="SPACE-key" class="key">SP<br>
-                <input type="text" id="SPACE-key-count" class="key-count" value="0" disabled />
-            </div>
-            <div id="RIGHT ARROW-key" class="key">RA<br>
-                <input type="text" id="RIGHT ARROW-key-count" class="key-count" value="0" disabled />
-            </div>
-            <div id="NUMPAD 7-key" class="key">7<br>
-                <input type="text" id="NUMPAD 7-key-count" class="key-count" value="0" disabled />
-            </div>
-            <div id="NUMPAD 8-key" class="key">8<br>
-                <input type="text" id="NUMPAD 8-key-count" class="key-count" value="0" disabled />
-            </div>
-            <div id="NUMPAD 9-key" class="key">9<br>
-                <input type="text" id="NUMPAD 9-key-count" class="key-count" value="0" disabled />
-            </div>
-            <div id="NUMPAD PLUS-key" class="key">+<br>
-                <input type="text" id="NUMPAD PLUS-key-count" class="key-count" value="0" disabled />
-            </div>
+            <table>
+                <tr>
+                    <td rowspan="2">
+                        <div id="CAPS LOCK-key" class="key">CL<br>
+                            <input type="text" id="CAPS LOCK-key-count" class="key-count" value="0" disabled />
+                        </div>
+                    </td>
+                    <td>
+                        <div id="Q-key" class="key">Q<br>
+                            <input type="text" id="Q-key-count" class="key-count" value="0" disabled />
+                        </div>
+                    </td>
+                    <td>
+                        <div id="W-key" class="key">W<br>
+                            <input type="text" id="W-key-count" class="key-count" value="0" disabled />
+                        </div>
+                    </td>
+                    <td>
+                        <div id="E-key" class="key">E<br>
+                            <input type="text" id="E-key-count" class="key-count" value="0" disabled />
+                        </div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div id="NUMPAD 7-key" class="key">7<br>
+                            <input type="text" id="NUMPAD 7-key-count" class="key-count" value="0" disabled />
+                        </div>
+                    </td>
+                    <td>
+                        <div id="NUMPAD 8-key" class="key">8<br>
+                            <input type="text" id="NUMPAD 8-key-count" class="key-count" value="0" disabled />
+                        </div>
+                    </td>
+                    <td>
+                        <div id="NUMPAD 9-key" class="key">9<br>
+                            <input type="text" id="NUMPAD 9-key-count" class="key-count" value="0" disabled />
+                        </div>
+                    </td>
+                    <td rowspan="2">
+                        <div id="NUMPAD PLUS-key" class="key">+<br>
+                            <input type="text" id="NUMPAD PLUS-key-count" class="key-count" value="0" disabled />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div id="SPACE-key" class="key">SP<br>
+                            <input type="text" id="SPACE-key-count" class="key-count" value="0" disabled />
+                        </div>
+                    </td>
+                    <td></td>
+                    <td colspan="3">
+                        <div id="RIGHT ARROW-key" class="key">RA<br>
+                            <input type="text" id="RIGHT ARROW-key-count" class="key-count" value="0" disabled />
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+
+
+
+
         </div>
         <div class="container">
             <div id="controls">

@@ -7,7 +7,7 @@ let mainWindow;
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 600,
-        height: 900,
+        height: 120,
         frame: false, // Disable the default window frame
         transparent: true,  // Make the window background transparent
         webPreferences: {
