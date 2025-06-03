@@ -34,7 +34,7 @@ app.on('ready', () => {
             }
         });
     });
-    mainWindow.loadFile('index3.html');
+    mainWindow.loadFile('index.html');
 
     const keyboardListener = new GlobalKeyboardListener();
     // Global key listener setup
